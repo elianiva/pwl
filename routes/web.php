@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
@@ -59,3 +61,10 @@ Route::redirect('/here', '/there');
 
 Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
 
+Route::get('/', [PageController::class, 'index']);
+Route::get('/about', [PageController::class, 'about']);
+Route::get('/articles/{id}', [PageController::class, 'articles']);
+
+Route::resource('photos', PhotoController::class)->only([
+    'index', 'show'
+]);
